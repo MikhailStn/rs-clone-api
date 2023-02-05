@@ -2,7 +2,8 @@
 
 ### Registration for owner
 
-``` URL: http://localhost:5000/auth/register/owner;
+``` 
+URL: http://localhost:5000/auth/register/owner;
 method: POST;
 headers: {
   "Content-Type": "application/json",
@@ -22,7 +23,8 @@ body request: {
 Возвращает ответ об успешной регистрации, id пользователя и его роль
 
 ### Registration for petsitter
-``` URL: http://localhost:5000/auth/register/petsitter;
+``` 
+URL: http://localhost:5000/auth/register/petsitter;
 method: POST;
 headers: {
   "Content-Type": "application/json",
