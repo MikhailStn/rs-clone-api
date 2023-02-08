@@ -25,7 +25,7 @@ body request: {
 ### Registration for petsitter
 ``` 
 URL: http://localhost:5000/auth/register/petsitter;
-method: POST;
+method: ;
 headers: {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
@@ -71,7 +71,7 @@ headers: {
 ### Get user by ID
 ```
 URL: http://localhost:5000/auth/user;
-METHOD: GET;
+METHOD: POST;
 headers: {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
@@ -85,7 +85,7 @@ body request: {
 ### Get Role by ID
 ```
 URL: http://localhost:5000/auth/user/role;
-METHOD: GET;
+METHOD: POST;
 headers: {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
