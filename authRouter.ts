@@ -28,7 +28,7 @@ router.post("/register/petsitter",
 controller.registrationPetsitter);
 router.post("/login", controller.login);
 router.get("/users", controller.getUsers);
-router.get("/user", controller.getUserByID);
-router.get("/user/role", controller.getRoleByUserID);
+router.post("/user", controller.getUserByID);
+router.post("/user/role", controller.getRoleByUserID);
 
 module.exports = router;
