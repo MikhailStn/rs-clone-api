@@ -2,6 +2,7 @@ const Router = require("express");
 const router = new Router();
 const controller = require("./authController");
 const {check} = require("express-validator");
+const upload = require('./upload')
 
 
 router.post(
@@ -30,5 +31,8 @@ router.post("/login", controller.login);
 router.get("/users", controller.getUsers);
 router.post("/user", controller.getUserByID);
 router.post("/user/role", controller.getRoleByUserID);
+//router.post("/register/add-photo", upload.single("image"), controller.create)
+//router.patch("./:id", upload.single("image"), controller.update)
+router.post("/register/add-photo", controller.addPhoto)
 
 module.exports = router;

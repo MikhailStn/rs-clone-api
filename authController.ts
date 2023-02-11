@@ -1,3 +1,7 @@
+// import { Img } from "./models/Image";
+const multer = require("multer");
+const moment = require("moment");
+
 const User1 = require("./models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -142,6 +146,40 @@ class authController {
     } catch (err) {
       console.log(err);
       res.status(400).json({ message: "Error to get user" });
+    }
+  }
+  // WORK WITH PHOTO UPLOAD
+  /*async create(req: any, res: any) {
+    const image = new Img({
+      name: req.body.name,
+      user: req.user.id,
+      imageSrc: req.file ? req.file.path : "",
+    });
+    try {
+      await image.save();
+      res.status(201).json(image);
+    } catch (err) {
+      console.log(err);
+    }
+  } */
+  async addPhoto(req: any, res: any) {
+    if (!req.files) {
+      return res.status(400).json({ message: "No file upload" });
+    }
+    const file = req.files.file;
+    if (!file) {
+      return res.json({ error: "Incorrect input name" });
+    }
+    const date = moment().format("DDMMYYYY-HHmmss_SSS");
+    const newFileName = `${date}-${file.name}`;
+    try {
+      res.json({
+        fileName: newFileName,
+        filePath: `/uploads/`,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).send(err);
     }
   }
 }
