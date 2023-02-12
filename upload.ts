@@ -1,4 +1,4 @@
-/* const multer = require("multer");
+const multer = require("multer");
 const moment = require("moment");
 
 const storage = multer.diskStorage({
@@ -7,16 +7,13 @@ const storage = multer.diskStorage({
   },
   filename(req: any, file: any, cb: any) {
     const date = moment().format("DDMMYYYY-HHmmss_SSS");
-    cb(null, `${date}-${file.originalname}`);
+    const fileName1 = `${date}-${file.originalname}`;
+    cb(null, fileName1);
   },
 });
 
 const fileFilter = (req: any, file: any, cb: any) => {
-  if (
-    file.mimetype === "image/png" ||
-    file.mimetype === "image/jpg" ||
-    file.mimetype === "image/jpeg"
-  ) {
+  if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
     cb(null, true);
   } else {
     cb(null, false);
@@ -31,4 +28,4 @@ module.exports = multer({
   storage,
   fileFilter,
   limits,
-}) */
+});

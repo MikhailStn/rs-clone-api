@@ -23,6 +23,7 @@ app.use(
     createParentPath: true,
   })
 );
+app.use('/uploads', express.static('./uploads'));
 
 // Устанавливаем сервер и соединение с базой данных
 
