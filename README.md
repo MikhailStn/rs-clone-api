@@ -111,7 +111,6 @@ body request: {
     gender: { type: String },
     services: { type: Array },
     address: { type: String },
-    avatarPath: { type: String },
     aboutMe: { type: String },
     carers: { type: String },
     skills: { type: String },
