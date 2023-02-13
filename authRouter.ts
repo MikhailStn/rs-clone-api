@@ -31,6 +31,5 @@ router.get("/users", controller.getUsers);
 router.post("/user", controller.getUserByID);
 router.post("/user/role", controller.getRoleByUserID);
 router.post("/register/add-photo", upload.single("image"), controller.addPhoto);
-router.patch("/petsitter/add-data", controller.addPetsitterData);
 
 module.exports = router;

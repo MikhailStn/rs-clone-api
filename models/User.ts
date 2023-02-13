@@ -8,7 +8,25 @@ const User = new Schema({
   password: { type: String, required: true },
   phone: { type: Number, required: true },
   role: { type: String, require: true },
-  pets: { type: Array }
+  pets: { type: Array },
+  petsitterData: { 
+    birth: { type: String },
+    gender: { type: String },
+    services: { type: Array },
+    address: { type: String },
+    avatarPath: { type: String },
+    aboutMe: { type: String },
+    carers: { type: String },
+    skills: { type: String },
+    qualifications: { type: String },
+    homeConditions: { type: Array },
+    tenatsAtHome: { type: Array },
+    otherAnimals: { type: Array },
+    level: { type: String },
+    rate: { type: String },
+    availableDates: { type: Array },
+    prices: { type: Array }
+  },
 });
 
 module.exports = model("User", User);

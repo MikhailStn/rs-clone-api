@@ -95,3 +95,34 @@ body request: {
 }
 ```
 Возвращает роль пользователя по id, если пользователь с таким id существует
+
+### Add petsitter data by ID
+```
+URL: http://localhost:5000/petsitter/add-data;
+METHOD: PATCH;
+headers: {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+},
+body request: {
+  _id: { type: String, required: true };
+  optional: 
+    birth: { type: String },
+    gender: { type: String },
+    services: { type: Array },
+    address: { type: String },
+    avatarPath: { type: String },
+    aboutMe: { type: String },
+    carers: { type: String },
+    skills: { type: String },
+    qualifications: { type: String },
+    homeConditions: { type: Array },
+    tenatsAtHome: { type: Array },
+    otherAnimals: { type: Array },
+    level: { type: String },
+    rate: { type: String },
+    availableDates: { type: Array },
+    prices: { type: Array }
+}
+```
+Добавляет указанные поля петситтеру по айди

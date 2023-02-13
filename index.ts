@@ -9,6 +9,7 @@ const authRouter = require("./authRouter");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 require("dotenv").config();
+const controller1 = require("./authController");
 
 app.use(
   cors({
@@ -24,6 +25,7 @@ app.use(
   })
 );
 app.use('/uploads', express.static('./uploads'));
+app.patch("/petsitter/add-data", controller1.addPetsitterData);
 
 // Устанавливаем сервер и соединение с базой данных
 
