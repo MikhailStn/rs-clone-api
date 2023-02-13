@@ -26,6 +26,8 @@ app.use(
 );
 app.use('/uploads', express.static('./uploads'));
 app.patch("/petsitter/add-data", controller1.addPetsitterData);
+app.get("/users/petsitters", controller1.getPetsitters);
+app.get("/users/owners", controller1.getOwners);
 
 // Устанавливаем сервер и соединение с базой данных
 

@@ -125,4 +125,26 @@ body request: {
     prices: { type: Array }
 }
 ```
-Добавляет указанные поля петситтеру по айди
+Добавляет указанные поля петситтеру по ID
+
+### Get petsitters
+```
+URL: http://localhost:5000/users/petsitters;
+METHOD: GET;
+headers: {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+}
+```
+Возвращает массив петситтеров
+
+### Get owners
+```
+URL: http://localhost:5000/users/owners;
+METHOD: GET;
+headers: {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+}
+```
+Возвращает массив хозяев

@@ -196,7 +196,7 @@ class authController {
         user2.petsitterData.address = address;
       }
       if (avatarPath) {
-        user2.petsitterData.avatarPath = avatarPath;
+        user2.avatarPath = avatarPath;
       }
       if (aboutMe) {
         user2.petsitterData.aboutMe = aboutMe;
@@ -235,6 +235,36 @@ class authController {
       await user2.save();
     } catch (err) {
       console.log(err);
+    }
+  }
+  async getPetsitters(req: any, res: any) {
+    try {
+      const users = await User1.find();
+      const petsitters: object[] = []
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].role === "PETSITTER") {
+          petsitters.push(users[i] as never)
+        }
+      }
+      res.json(petsitters);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ message: "Error to get users" });
+    }
+  }
+  async getOwners(req: any, res: any) {
+    try {
+      const users = await User1.find();
+      const owners: object[] = []
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].role === "OWNER") {
+          owners.push(users[i] as never)
+        }
+      }
+      res.json(owners);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ message: "Error to get users" });
     }
   }
 }

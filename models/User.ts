@@ -9,12 +9,12 @@ const User = new Schema({
   phone: { type: Number, required: true },
   role: { type: String, require: true },
   pets: { type: Array },
+  avatarPath: { type: String },
   petsitterData: { 
     birth: { type: String },
     gender: { type: String },
     services: { type: Array },
     address: { type: String },
-    avatarPath: { type: String },
     aboutMe: { type: String },
     carers: { type: String },
     skills: { type: String },
@@ -25,7 +25,8 @@ const User = new Schema({
     level: { type: String },
     rate: { type: String },
     availableDates: { type: Array },
-    prices: { type: Array }
+    prices: { type: Array },
+    reviews: { type: Array }
   },
 });
 
