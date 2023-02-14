@@ -16,16 +16,12 @@ class authController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ message: "Ошибка при регистрации", errors });
+        return res.status(400).json({ message: "Ошибка при регистрации", errors });
       }
       const { firstName, lastName, city, email, password, phone } = req.body;
       const candidateEmail = await User1.findOne({ email });
       if (candidateEmail) {
-        return res
-          .status(400)
-          .json({ message: "Пользователь с таким email уже существует" });
+        return res.status(400).json({ message: "Пользователь с таким email уже существует" });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const user = new User1({
@@ -54,9 +50,7 @@ class authController {
       const { email, password } = req.body;
       const user2 = await User1.findOne({ email });
       if (!user2) {
-        return res
-          .status(400)
-          .json({ message: `Пользователь c таким адресом почты не найден` });
+        return res.status(400).json({ message: `Пользователь c таким адресом почты не найден` });
       }
       const validPassword = bcrypt.compareSync(password, user2.password);
       if (!validPassword) {
@@ -83,9 +77,7 @@ class authController {
       const { _id } = req.body;
       const currentUser = await User1.findOne({ _id });
       if (!currentUser) {
-        return res
-          .status(400)
-          .json({ message: `Пользователь c таким id не найден` });
+        return res.status(400).json({ message: `Пользователь c таким id не найден` });
       }
       return res.json(currentUser);
     } catch (err) {
@@ -97,16 +89,12 @@ class authController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ message: "Ошибка при регистрации", errors });
+        return res.status(400).json({ message: "Ошибка при регистрации", errors });
       }
       const { firstName, lastName, city, email, password, phone } = req.body;
       const candidateEmail = await User1.findOne({ email });
       if (candidateEmail) {
-        return res
-          .status(400)
-          .json({ message: "Пользователь с таким email уже существует" });
+        return res.status(400).json({ message: "Пользователь с таким email уже существует" });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const user = new User1({
@@ -134,9 +122,7 @@ class authController {
       const { _id } = req.body;
       const currentUser = await User1.findOne({ _id });
       if (!currentUser) {
-        return res
-          .status(400)
-          .json({ message: `Пользователь c таким id не найден` });
+        return res.status(400).json({ message: `Пользователь c таким id не найден` });
       }
       return res.json(currentUser.role);
     } catch (err) {
@@ -167,7 +153,19 @@ class authController {
         _id,
         birth,
         gender,
-        services,
+        active_hotel,
+        active_walking,
+        active_homevisits,
+        animals_hotel,
+        animals_homevisits,
+        price_hotel,
+        price_walking,
+        price_homevisits,
+        serviceArea_walking,
+        serviceArea_homevisits,
+        kindOfDogs,
+        ageOfDogs,
+        genderOfDogs,
         address,
         avatarPath,
         aboutMe,
@@ -189,8 +187,44 @@ class authController {
       if (gender) {
         user2.petsitterData.gender = gender;
       }
-      if (services) {
-        user2.petsitterData.services = services;
+      if (active_hotel) {
+        user2.petsitterData.services.hotel.active = active_hotel;
+      }
+      if (active_walking) {
+        user2.petsitterData.services.walking.active = active_walking;
+      }
+      if (active_homevisits) {
+        user2.petsitterData.services.homevisits.active = active_homevisits;
+      }
+      if (animals_hotel) {
+        user2.petsitterData.services.hotel.animals = animals_hotel;
+      }
+      if (animals_homevisits) {
+        user2.petsitterData.services.homevisits.animals = animals_homevisits;
+      }
+      if (price_hotel) {
+        user2.petsitterData.services.hotel.price = price_hotel;
+      }
+      if (price_walking) {
+        user2.petsitterData.services.walking.price = price_walking;
+      }
+      if (price_homevisits) {
+        user2.petsitterData.services.homevisits.price = price_homevisits;
+      }
+      if (serviceArea_walking) {
+        user2.petsitterData.services.walking.serviceArea = serviceArea_walking;
+      }
+      if (serviceArea_homevisits) {
+        user2.petsitterData.services.homevisits.serviceArea = serviceArea_homevisits;
+      }
+      if (kindOfDogs) {
+        user2.petsitterData.services.walking.kindOfDogs = kindOfDogs;
+      }
+      if (ageOfDogs) {
+        user2.petsitterData.services.walking.ageOfDogs = ageOfDogs;
+      }
+      if (genderOfDogs) {
+        user2.petsitterData.services.walking.genderOfDogs = genderOfDogs;
       }
       if (address) {
         user2.petsitterData.address = address;
@@ -240,10 +274,10 @@ class authController {
   async getPetsitters(req: any, res: any) {
     try {
       const users = await User1.find();
-      const petsitters: object[] = []
+      const petsitters: object[] = [];
       for (let i = 0; i < users.length; i++) {
         if (users[i].role === "PETSITTER") {
-          petsitters.push(users[i] as never)
+          petsitters.push(users[i] as never);
         }
       }
       res.json(petsitters);
@@ -255,10 +289,10 @@ class authController {
   async getOwners(req: any, res: any) {
     try {
       const users = await User1.find();
-      const owners: object[] = []
+      const owners: object[] = [];
       for (let i = 0; i < users.length; i++) {
         if (users[i].role === "OWNER") {
-          owners.push(users[i] as never)
+          owners.push(users[i] as never);
         }
       }
       res.json(owners);

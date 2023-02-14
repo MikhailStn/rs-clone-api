@@ -13,7 +13,31 @@ const User = new Schema({
   petsitterData: { 
     birth: { type: String },
     gender: { type: String },
-    services: { type: Array },
+    services: { 
+      hotel: {
+        active: { type: String },
+        animals: { type: Array },
+        price: { type: String }
+      },
+      walking: {
+        active: { type: String },
+        serviceArea: { type: String },
+        kindOfDogs: { type: Array },
+        ageOfDogs: { type: Array },
+        genderOfDogs: { type: Array },
+        price: { type: String },
+      },
+      homevisits: {
+        active: { type: String },
+        serviceArea: { type: String },
+        animals: { type: Array },
+        price: { type: String },
+      },
+      training: {
+        active: { type: String },
+        price: { type: String }
+      }
+    },
     address: { type: String },
     aboutMe: { type: String },
     carers: { type: String },
