@@ -115,7 +115,7 @@ body request: {
     aboutMe: { type: String },
     carers: { type: String },
     skills: { type: String },
-    qualifications: { type: String },
+    qualifications: { type: Array },
     homeConditions: { type: Array },
     tenatsAtHome: { type: Array },
     otherAnimals: { type: Array },
