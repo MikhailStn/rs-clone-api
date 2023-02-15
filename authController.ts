@@ -16,12 +16,16 @@ class authController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ message: "Ошибка при регистрации", errors });
+        return res
+          .status(400)
+          .json({ message: "Ошибка при регистрации", errors });
       }
       const { firstName, lastName, city, email, password, phone } = req.body;
       const candidateEmail = await User1.findOne({ email });
       if (candidateEmail) {
-        return res.status(400).json({ message: "Пользователь с таким email уже существует" });
+        return res
+          .status(400)
+          .json({ message: "Пользователь с таким email уже существует" });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const user = new User1({
@@ -50,7 +54,9 @@ class authController {
       const { email, password } = req.body;
       const user2 = await User1.findOne({ email });
       if (!user2) {
-        return res.status(400).json({ message: `Пользователь c таким адресом почты не найден` });
+        return res
+          .status(400)
+          .json({ message: `Пользователь c таким адресом почты не найден` });
       }
       const validPassword = bcrypt.compareSync(password, user2.password);
       if (!validPassword) {
@@ -77,7 +83,9 @@ class authController {
       const { _id } = req.body;
       const currentUser = await User1.findOne({ _id });
       if (!currentUser) {
-        return res.status(400).json({ message: `Пользователь c таким id не найден` });
+        return res
+          .status(400)
+          .json({ message: `Пользователь c таким id не найден` });
       }
       return res.json(currentUser);
     } catch (err) {
@@ -89,12 +97,16 @@ class authController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ message: "Ошибка при регистрации", errors });
+        return res
+          .status(400)
+          .json({ message: "Ошибка при регистрации", errors });
       }
       const { firstName, lastName, city, email, password, phone } = req.body;
       const candidateEmail = await User1.findOne({ email });
       if (candidateEmail) {
-        return res.status(400).json({ message: "Пользователь с таким email уже существует" });
+        return res
+          .status(400)
+          .json({ message: "Пользователь с таким email уже существует" });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const user = new User1({
@@ -122,7 +134,9 @@ class authController {
       const { _id } = req.body;
       const currentUser = await User1.findOne({ _id });
       if (!currentUser) {
-        return res.status(400).json({ message: `Пользователь c таким id не найден` });
+        return res
+          .status(400)
+          .json({ message: `Пользователь c таким id не найден` });
       }
       return res.json(currentUser.role);
     } catch (err) {
@@ -153,6 +167,7 @@ class authController {
         _id,
         birth,
         gender,
+        servicesArr,
         active_hotel,
         active_walking,
         active_homevisits,
@@ -179,10 +194,14 @@ class authController {
         rate,
         availableDates,
         prices,
+        typeOfHome,
       } = req.body;
       const user2 = await User1.findOne({ _id });
       if (birth) {
         user2.petsitterData.birth = birth;
+      }
+      if (servicesArr) {
+        user2.petsitterData.services.servicesArr = servicesArr;
       }
       if (gender) {
         user2.petsitterData.gender = gender;
@@ -213,9 +232,14 @@ class authController {
       }
       if (serviceArea_walking) {
         user2.petsitterData.services.walking.serviceArea = serviceArea_walking;
+      } else {
+        user2.petsitterData.services.walking.serviceArea = "all";
       }
       if (serviceArea_homevisits) {
-        user2.petsitterData.services.homevisits.serviceArea = serviceArea_homevisits;
+        user2.petsitterData.services.homevisits.serviceArea =
+          serviceArea_homevisits;
+      } else {
+        user2.petsitterData.services.homevisits.serviceArea = "all";
       }
       if (kindOfDogs) {
         user2.petsitterData.services.walking.kindOfDogs = kindOfDogs;
@@ -243,6 +267,9 @@ class authController {
       }
       if (qualifications) {
         user2.petsitterData.qualifications = qualifications;
+      }
+      if (typeOfHome) {
+        user2.petsitterData.typeOfHome = typeOfHome;
       }
       if (homeConditions) {
         user2.petsitterData.homeConditions = homeConditions;

@@ -13,7 +13,8 @@ const User = new Schema({
   petsitterData: { 
     birth: { type: String },
     gender: { type: String },
-    services: { 
+    services: {
+      servicesArr: { type: Array },
       hotel: {
         active: { type: String },
         animals: { type: Array },
@@ -42,6 +43,7 @@ const User = new Schema({
     aboutMe: { type: String },
     carers: { type: String },
     skills: { type: String },
+    typeOfHome: { type: String },
     qualifications: { type: Array },
     homeConditions: { type: Array },
     tenatsAtHome: { type: Array },
