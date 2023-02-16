@@ -8,9 +8,35 @@ const User = new Schema({
   password: { type: String, required: true },
   phone: { type: Number, required: true },
   role: { type: String, require: true },
-  pets: { type: Array },
+  pets: [
+    {
+      petId: { type: String },
+      name: { type: String },
+      type: { type: String },
+      gender: { type: String },
+      breed: { type: String },
+      size: { type: String },
+      age: { type: String },
+      avatarPath: { type: String },
+      about: { type: String },
+      other: {
+        neutered: { type: String },
+        isAlone: { type: String },
+        isMotionSickness: { type: String },
+        takesMedication: { type: String },
+        isAgressive: { type: String },
+        isExcitable: { type: String },
+        isTimid: { type: String },
+        tendsToRunAway: { type: String },
+        hasVaccinationBoolket: { type: String },
+        withYellowRibbon: { type: String },
+        inMidstOfHeat: { type: String },
+        isDefecatesAtHome: { type: String },
+      },
+    },
+  ],
   avatarPath: { type: String },
-  petsitterData: { 
+  petsitterData: {
     birth: { type: String },
     gender: { type: String },
     services: {
@@ -18,7 +44,7 @@ const User = new Schema({
       hotel: {
         active: { type: String },
         animals: { type: Array },
-        price: { type: String }
+        price: { type: String },
       },
       walking: {
         active: { type: String },
@@ -36,8 +62,8 @@ const User = new Schema({
       },
       training: {
         active: { type: String },
-        price: { type: String }
-      }
+        price: { type: String },
+      },
     },
     address: { type: String },
     aboutMe: { type: String },
@@ -52,7 +78,7 @@ const User = new Schema({
     rate: { type: String },
     availableDates: { type: Array },
     prices: { type: Array },
-    reviews: { type: Array }
+    reviews: { type: Array },
   },
 });
 

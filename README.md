@@ -122,6 +122,7 @@ body request: {
     rate: { type: String },
     availableDates: { type: Array },
     prices: { type: Array }
+    pets: { type: Object }
 }
 ```
 Добавляет указанные поля петситтеру по ID

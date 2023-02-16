@@ -195,8 +195,12 @@ class authController {
         availableDates,
         prices,
         typeOfHome,
+        petsObj,
       } = req.body;
       const user2 = await User1.findOne({ _id });
+      if (petsObj) {
+        user2.pets.push(petsObj);
+      }
       if (birth) {
         user2.petsitterData.birth = birth;
       }
