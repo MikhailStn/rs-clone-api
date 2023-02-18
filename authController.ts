@@ -291,7 +291,13 @@ class authController {
         user2.petsitterData.rate = rate;
       }
       if (availableDates) {
-        user2.petsitterData.availableDates.push(availableDates).flat(Infinity);
+        for (let i = 0; i < availableDates.length; i++) {
+          if (user2.petsitterData.availableDates.includes(availableDates[i])) {
+            return;
+          } else {
+            user2.petsitterData.availableDates.push(availableDates[i]);
+          }
+        }
       }
       if (prices) {
         user2.petsitterData.prices = prices;
@@ -335,14 +341,13 @@ class authController {
   link = ``;
   async createChat(req: any, res: any) {
     try {
-
     } catch (err) {
       console.log(err);
     }
   }
-  async createOrder(req: any, res:any) {
+  async createOrder(req: any, res: any) {
     try {
-      const order = {  }
+      const order = {};
     } catch (err) {
       console.log(err);
     }
