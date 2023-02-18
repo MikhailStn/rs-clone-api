@@ -291,7 +291,7 @@ class authController {
         user2.petsitterData.rate = rate;
       }
       if (availableDates) {
-        user2.petsitterData.availableDates = availableDates;
+        user2.petsitterData.availableDates.push(availableDates).flat(Infinity);
       }
       if (prices) {
         user2.petsitterData.prices = prices;
@@ -332,6 +332,26 @@ class authController {
       res.status(400).json({ message: "Error to get users" });
     }
   }
+  link = ``;
+  async createChat(req: any, res: any) {
+    try {
+
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async createOrder(req: any, res:any) {
+    try {
+      const order = {  }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
 
 module.exports = new authController();
+
+const randomInteger = (min: number, max: number) => {
+  let rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
+};

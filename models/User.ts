@@ -79,6 +79,30 @@ const User = new Schema({
     availableDates: { type: Array },
     prices: { type: Array },
     reviews: { type: Array },
+    orders: [
+      {
+        numberOfOrder: { type: String },
+        petsitterId: { type: String },
+        ownerId: { type: String },
+        /* chat: {
+          roomId: { type: String },
+          messages: [
+            {
+              avatarPath: { type: String },
+              name: { type: String },
+              message: { type: String }
+            }
+          ]
+        }, */
+        messages: [
+          {
+            avatarPath: { type: String },
+            name: { type: String },
+            message: { type: String }
+          }
+        ]
+      }
+    ]
   },
 });
 

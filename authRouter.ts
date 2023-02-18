@@ -32,4 +32,5 @@ router.post("/user", controller.getUserByID);
 router.post("/user/role", controller.getRoleByUserID);
 router.post("/register/add-photo", upload.single("image"), controller.addPhoto);
 
+
 module.exports = router;

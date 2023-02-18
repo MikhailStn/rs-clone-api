@@ -68,7 +68,7 @@ headers: {
 ```
 Возвращает массив пользователей
 
-### Get user by ID
+###   user by ID
 ```
 URL: http://localhost:5000/auth/user;
 METHOD: POST;
