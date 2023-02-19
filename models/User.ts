@@ -21,8 +21,8 @@ const User = new Schema({
       about: { type: String },
       other: {
         neutered: { type: String },
-        isAlone: { type: String },
-        isMotionSickness: { type: String },
+        canBeInHerd: { type: String },
+        hasMotionSickness: { type: String },
         takesMedication: { type: String },
         isAgressive: { type: String },
         isExcitable: { type: String },
@@ -31,7 +31,8 @@ const User = new Schema({
         hasVaccinationBoolket: { type: String },
         withYellowRibbon: { type: String },
         inMidstOfHeat: { type: String },
-        isDefecatesAtHome: { type: String },
+        defecatesAtHome: { type: String },
+        arr: [],
       },
     },
   ],
@@ -79,21 +80,21 @@ const User = new Schema({
     availableDates: { type: Array },
     prices: { type: Array },
     reviews: { type: Array },
-    orders: [
-      {
-        numberOfOrder: { type: String },
-        petsitterId: { type: String },
-        ownerId: { type: String },
-        /* chat: {
-          roomId: { type: String },
-          messages: [
-            {
-              avatarPath: { type: String },
-              name: { type: String },
-              message: { type: String }
-            }
-          ]
-        }, */
+  },
+  orders: [
+    {
+      numberOfOrder: { type: String },
+      petsitterId: { type: String },
+      ownerId: { type: String },
+      pet: { type: Object },
+      nameOfOwner: { type: String },
+      nameOfPetsitter: { type: String },
+      dates: { type: String },
+      service: { type: String },
+      pricePerDay: { type: String },
+      status: { type: String },
+      /* chat: {
+        roomId: { type: String },
         messages: [
           {
             avatarPath: { type: String },
@@ -101,9 +102,16 @@ const User = new Schema({
             message: { type: String }
           }
         ]
-      }
-    ]
-  },
+      }, */
+      messages: [
+        {
+          avatarPath: { type: String },
+          name: { type: String },
+          message: { type: String }
+        }
+      ]
+    }
+  ]
 });
 
 module.exports = model("User", User);

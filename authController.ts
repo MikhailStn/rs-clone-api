@@ -37,6 +37,7 @@ class authController {
         phone,
         role: "OWNER",
         pets: [],
+        orders: []
       });
       await user.save();
       return res.json({
@@ -117,6 +118,7 @@ class authController {
         password: hashPassword,
         phone,
         role: "PETSITTER",
+        orders: []
       });
       await user.save();
       return res.json({
@@ -196,6 +198,8 @@ class authController {
         prices,
         typeOfHome,
         petsObj,
+        order,
+        message
       } = req.body;
       const user2 = await User1.findOne({ _id });
       if (petsObj) {
@@ -290,6 +294,9 @@ class authController {
       if (rate) {
         user2.petsitterData.rate = rate;
       }
+      if (order) {
+        user2.orders.push(order)
+      }
       if (availableDates) {
         for (let i = 0; i < availableDates.length; i++) {
           if (user2.petsitterData.availableDates.includes(availableDates[i])) {
@@ -301,6 +308,9 @@ class authController {
       }
       if (prices) {
         user2.petsitterData.prices = prices;
+      }
+      if (message) {
+        user2.petsitterData.order.messages.push(message)
       }
       res.json({ user2 });
       await user2.save();
