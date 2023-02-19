@@ -88,21 +88,13 @@ const User = new Schema({
       ownerId: { type: String },
       pet: { type: Object },
       nameOfOwner: { type: String },
+      avatarOwner: { type: String },
+      avatarPetsitter: { type: String },
       nameOfPetsitter: { type: String },
       dates: { type: String },
       service: { type: String },
       pricePerDay: { type: String },
       status: { type: String },
-      /* chat: {
-        roomId: { type: String },
-        messages: [
-          {
-            avatarPath: { type: String },
-            name: { type: String },
-            message: { type: String }
-          }
-        ]
-      }, */
       messages: [
         {
           avatarPath: { type: String },
