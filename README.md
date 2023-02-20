@@ -147,4 +147,17 @@ headers: {
   "Access-Control-Allow-Origin": "*",
 }
 ```
+
+### Get order by number
+```
+URL: http://localhost:5000/order/
+METHOD: POST;
+headers: {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+},
+body request: {
+  numberOfOrder: { type: String, required: true }
+}
+
 Возвращает массив хозяев

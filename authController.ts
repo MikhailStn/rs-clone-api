@@ -37,7 +37,7 @@ class authController {
         phone,
         role: "OWNER",
         pets: [],
-        orders: []
+        orders: [],
       });
       await user.save();
       return res.json({
@@ -118,7 +118,7 @@ class authController {
         password: hashPassword,
         phone,
         role: "PETSITTER",
-        orders: []
+        orders: [],
       });
       await user.save();
       return res.json({
@@ -199,7 +199,8 @@ class authController {
         typeOfHome,
         petsObj,
         order,
-        message
+        message,
+        orderNum,
       } = req.body;
       const user2 = await User1.findOne({ _id });
       if (petsObj) {
@@ -295,7 +296,7 @@ class authController {
         user2.petsitterData.rate = rate;
       }
       if (order) {
-        user2.orders.push(order)
+        user2.orders.push(order);
       }
       if (availableDates) {
         for (let i = 0; i < availableDates.length; i++) {
@@ -310,7 +311,15 @@ class authController {
         user2.petsitterData.prices = prices;
       }
       if (message) {
-        user2.petsitterData.order.messages.push(message)
+        const users = await User1.find();
+        const numberOfOrder = orderNum;
+        for (let i = 0; i < users.length; i++) {
+          for (let j = 0; j < users[i].orders.length; j++) {
+            if (users[i].orders[j].numberOfOrder == numberOfOrder) {
+              users[i].orders[j].messages.push(message);
+            }
+          }
+        }
       }
       res.json({ user2 });
       await user2.save();
@@ -361,6 +370,39 @@ class authController {
     } catch (err) {
       console.log(err);
     }
+  }
+  async getOrder(req: any, res: any) {
+    try {
+      const { numberOfOrder } = req.body;
+      const users = await User1.find();
+      let result;
+      for (let i = 0; i < users.length; i++) {
+        for (let j = 0; j < users[i].orders.length; j++) {
+          if (users[i].orders[j].numberOfOrder == numberOfOrder) {
+            result = users[i].orders[j];
+          }
+        }
+      }
+      res.json(result);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async pushMessage(req: any, res: any) {
+    const { orderNum, message } = req.body;
+    const users = await User1.find();
+    const numberOfOrder = orderNum;
+    let result
+    for (let i = 0; i < users.length; i++) {
+      for (let j = 0; j < users[i].orders.length; j++) {
+        if (users[i].orders[j].numberOfOrder == numberOfOrder) {
+          users[i].orders[j].messages.push(message);
+          await users[i].save();
+          result = users[i]
+        }
+      }
+    }
+    return res.json(result);
   }
 }
 

@@ -99,7 +99,7 @@ const User = new Schema({
         {
           avatarPath: { type: String },
           name: { type: String },
-          message: { type: String }
+          text: { type: String }
         }
       ]
     }
