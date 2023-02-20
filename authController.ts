@@ -398,7 +398,7 @@ class authController {
         if (users[i].orders[j].numberOfOrder == numberOfOrder) {
           users[i].orders[j].messages.push(message);
           await users[i].save();
-          result = users[i]
+          result = users[i].orders[j]
         }
       }
     }
