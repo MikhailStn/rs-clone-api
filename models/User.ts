@@ -8,6 +8,7 @@ const User = new Schema({
   password: { type: String, required: true },
   phone: { type: Number, required: true },
   role: { type: String, require: true },
+  address: { type: String },
   pets: [
     {
       petId: { type: String },
@@ -66,7 +67,6 @@ const User = new Schema({
         price: { type: String },
       },
     },
-    address: { type: String },
     aboutMe: { type: String },
     carers: { type: String },
     skills: { type: String },

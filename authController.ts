@@ -201,8 +201,32 @@ class authController {
         order,
         message,
         orderNum,
+        firstName,
+        lastName,
+        city,
+        email,
+        password,
+        phone,
       } = req.body;
       const user2 = await User1.findOne({ _id });
+      if (firstName) {
+        user2.firstName = firstName
+      }
+      if (lastName) {
+        user2.lastName = lastName
+      }
+      if (city) {
+        user2.city = city
+      }
+      if (email) {
+        user2.email = email
+      }
+      if (phone) {
+        user2.phone = phone
+      }
+      if (firstName) {
+        user2.firstName = firstName
+      }
       if (petsObj) {
         user2.pets.push(petsObj);
       }
@@ -260,7 +284,7 @@ class authController {
         user2.petsitterData.services.walking.genderOfDogs = genderOfDogs;
       }
       if (address) {
-        user2.petsitterData.address = address;
+        user2.address = address;
       }
       if (avatarPath) {
         user2.avatarPath = avatarPath;
