@@ -91,18 +91,19 @@ const User = new Schema({
       avatarOwner: { type: String },
       avatarPetsitter: { type: String },
       nameOfPetsitter: { type: String },
-      dates: { type: String },
+      dates: { type: Array },
       service: { type: String },
       pricePerDay: { type: String },
       status: { type: String },
+      city: { type: String },
       messages: [
         {
           avatarPath: { type: String },
           name: { type: String },
           text: { type: String },
-          date: { type: String }
+          date: { type: Array }
         }
-      ]
+      ],
     }
   ]
 });
