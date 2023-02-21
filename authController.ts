@@ -209,23 +209,27 @@ class authController {
         phone,
       } = req.body;
       const user2 = await User1.findOne({ _id });
+      if (password) {
+        const codedPassword = bcrypt.hashSync(password, 7);
+        user2.password = codedPassword;
+      }
       if (firstName) {
-        user2.firstName = firstName
+        user2.firstName = firstName;
       }
       if (lastName) {
-        user2.lastName = lastName
+        user2.lastName = lastName;
       }
       if (city) {
-        user2.city = city
+        user2.city = city;
       }
       if (email) {
-        user2.email = email
+        user2.email = email;
       }
       if (phone) {
-        user2.phone = phone
+        user2.phone = phone;
       }
       if (firstName) {
-        user2.firstName = firstName
+        user2.firstName = firstName;
       }
       if (petsObj) {
         user2.pets.push(petsObj);
@@ -416,13 +420,13 @@ class authController {
     const { orderNum, message } = req.body;
     const users = await User1.find();
     const numberOfOrder = orderNum;
-    let result
+    let result;
     for (let i = 0; i < users.length; i++) {
       for (let j = 0; j < users[i].orders.length; j++) {
         if (users[i].orders[j].numberOfOrder == numberOfOrder) {
           users[i].orders[j].messages.push(message);
           await users[i].save();
-          result = users[i].orders[j]
+          result = users[i].orders[j];
         }
       }
     }
