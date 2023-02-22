@@ -207,8 +207,12 @@ class authController {
         email,
         password,
         phone,
+        review,
       } = req.body;
       const user2 = await User1.findOne({ _id });
+      if (review) {
+        user2.petsitterData.reviews.push(review)
+      }
       if (password) {
         const codedPassword = bcrypt.hashSync(password, 7);
         user2.password = codedPassword;
