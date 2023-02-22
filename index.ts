@@ -9,7 +9,7 @@ const authRouter = require("./authRouter.ts");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 require("dotenv").config();
-const controller1 = require("./authController.ts");
+const controller1 = require("./authController");
 
 app.use(
   cors({
