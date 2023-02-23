@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
-  "type": "module",
   "scripts": {
-    "dev": "nodemon index.ts"
+    "dev": "nodemon index.ts",
+    "build": "ts-node index.ts"
   },
   "repository": {
     "type": "git",
