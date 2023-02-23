@@ -2,7 +2,6 @@
   "name": "rs-clone-api",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon index.ts"
@@ -33,9 +32,13 @@
     "pg-hstore": "^2.3.4",
     "save-dev": "^0.0.1-security",
     "sequelize": "^6.28.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/node": "^18.14.0",
+    "typescript": "^3.9.3"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/node": "^18.14.0",
     "nodemon": "^2.0.20"
   }
