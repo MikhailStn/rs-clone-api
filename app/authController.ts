@@ -11,6 +11,8 @@ const generateAccesToken = (userId: string) => {
   return jwt.sign(payload, secret, { expiresIn: "24h" });
 };
 
+
+
 class authController {
   async registration(req: any, res: any) {
     try {
