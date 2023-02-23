@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon index.ts",
-    "start": "ts-node index.ts"
+    "dev": "nodemon",
+    "start": "ts-node-dev --inspect -- index.ts"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,6 @@
     "pg-hstore": "^2.3.4",
     "save-dev": "^0.0.1-security",
     "sequelize": "^6.28.0",
-    "ts-node": "^10.9.1",
     "typescript": "^3.9.10",
     "xxx": "^0.0.1"
   },
@@ -44,6 +43,7 @@
     "@types/node": "^18.14.0",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^3.9.10"
   }
 }
