@@ -2,10 +2,10 @@
   "name": "rs-clone-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "./app/index.ts",
   "scripts": {
     "dev": "nodemon",
-    "start": "ts-node-dev --inspect -- index.ts"
+    "start": "ts-node ./app/index.ts"
   },
   "repository": {
     "type": "git",
