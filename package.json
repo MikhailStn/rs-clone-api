@@ -4,8 +4,7 @@
   "description": "",
   "main": "./app/index.ts",
   "scripts": {
-    "dev": "nodemon",
-    "start": "npx ts-node ./app/index.ts"
+    "start": "ts-node ./app/index.ts"
   },
   "repository": {
     "type": "git",
