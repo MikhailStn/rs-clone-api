@@ -2,8 +2,9 @@
   "name": "rs-clone-api",
   "version": "1.0.0",
   "description": "",
-  "main": "ts-node index.ts",
+  "main": "index.ts",
   "scripts": {
+    "build": "ts-node index.ts",
     "dev": "nodemon index.ts"
   },
   "repository": {
