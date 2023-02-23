@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon index.ts",
-    "build": "ts-node index.ts"
+    "dev": "nodemon index.ts"
   },
   "repository": {
     "type": "git",

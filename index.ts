@@ -48,3 +48,6 @@ const start = async () => {
 };
 
 start();
+
+
+//"build": "ts-node index.ts"
