@@ -5,7 +5,7 @@ const fs = require("fs");
 // export const sequelize = require("./db");
 const PORT = process.env.PORT || 5000;
 const app = express();
-const authRouter = require("./authRouter.ts");
+const authRouter = require("./authRouter");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
 require("dotenv").config();
