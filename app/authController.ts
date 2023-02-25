@@ -11,8 +11,6 @@ const generateAccesToken = (userId: string) => {
   return jwt.sign(payload, secret, { expiresIn: "24h" });
 };
 
-
-
 class authController {
   async registration(req: any, res: any) {
     try {
@@ -40,6 +38,8 @@ class authController {
         role: "OWNER",
         pets: [],
         orders: [],
+        birth: '',
+        gender: ''
       });
       await user.save();
       return res.json({
@@ -121,6 +121,8 @@ class authController {
         phone,
         role: "PETSITTER",
         orders: [],
+        birth: '',
+        gender: ''
       });
       await user.save();
       return res.json({
@@ -210,10 +212,15 @@ class authController {
         password,
         phone,
         review,
+        name
       } = req.body;
       const user2 = await User1.findOne({ _id });
       if (review) {
         user2.petsitterData.reviews.push(review)
+      }
+      if (name) {
+        user2.firstName = name[0];
+        user2.lastName = name[1];
       }
       if (password) {
         const codedPassword = bcrypt.hashSync(password, 7);
@@ -241,13 +248,13 @@ class authController {
         user2.pets.push(petsObj);
       }
       if (birth) {
-        user2.petsitterData.birth = birth;
+        user2.birth = birth;
       }
       if (servicesArr) {
         user2.petsitterData.services.servicesArr = servicesArr;
       }
       if (gender) {
-        user2.petsitterData.gender = gender;
+        user2.gender = gender;
       }
       if (active_hotel) {
         user2.petsitterData.services.hotel.active = active_hotel;
@@ -296,7 +303,7 @@ class authController {
       if (address) {
         user2.address = address;
       }
-      if (avatarPath) {
+      if (avatarPath || avatarPath == '') {
         user2.avatarPath = avatarPath;
       }
       if (aboutMe) {
@@ -437,6 +444,16 @@ class authController {
       }
     }
     return res.json(result);
+  }
+  async checkPassword(req: any, res: any) {
+    const { _id, currPassword } = req.body;
+    const currentUser = await User1.findOne({ _id });
+    const validPassword = bcrypt.compareSync(currPassword, currentUser.password)
+    if (validPassword) {
+      return res.json({ message: "Success" });
+    } else {
+      return res.json({ message: "Incorrect Password" });
+    }
   }
 }
 

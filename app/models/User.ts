@@ -9,12 +9,13 @@ const User = new Schema({
   phone: { type: Number, required: true },
   role: { type: String, require: true },
   address: { type: String },
+  birth: { type: String },
+  gender: { type: String },
   pets: [
     {
       petId: { type: String },
       name: { type: String },
       type: { type: String },
-      gender: { type: String },
       breed: { type: String },
       size: { type: String },
       age: { type: String },
@@ -39,17 +40,16 @@ const User = new Schema({
   ],
   avatarPath: { type: String },
   petsitterData: {
-    birth: { type: String },
     gender: { type: String },
     services: {
       servicesArr: { type: Array },
       hotel: {
-        active: { type: String },
+        active: String,
         animals: { type: Array },
         price: { type: String },
       },
       walking: {
-        active: { type: String },
+        active: String,
         serviceArea: { type: String },
         kindOfDogs: { type: Array },
         ageOfDogs: { type: Array },
@@ -57,7 +57,7 @@ const User = new Schema({
         price: { type: String },
       },
       homevisits: {
-        active: { type: String },
+        active: String,
         serviceArea: { type: String },
         animals: { type: Array },
         price: { type: String },

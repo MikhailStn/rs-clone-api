@@ -31,6 +31,7 @@ app.get("/users/owners", controller1.getOwners);
 app.get("/users/get-chat", controller1.getOwners);
 app.post("/order", controller1.getOrder);
 app.post("/send-message", controller1.pushMessage)
+app.post("/check-password", controller1.checkPassword)
 
 // Устанавливаем сервер и соединение с базой данных
 
