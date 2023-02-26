@@ -455,6 +455,39 @@ class authController {
       return res.json({ message: "Incorrect Password" });
     }
   }
+  async removePet(req: any, res: any) {
+    const { _id, petId } = req.body;
+    const currentUser = await User1.findOne({ _id });
+    for (let i = 0; i < currentUser.pets.length; i++) {
+      if (currentUser.pets[i].petId == petId) {
+        currentUser.pets.splice(i, 1)
+      }
+    }
+    await currentUser.save();
+    return res.json(currentUser);
+  }
+  async getPetById(req: any, res: any) {
+    const { _id, petId } = req.body;
+    const currentUser = await User1.findOne({ _id });
+    let result = ''
+    for (let i = 0; i < currentUser.pets.length; i++) {
+      if (currentUser.pets[i].petId == petId) {
+        result = currentUser.pets[i]
+      }
+    }
+    return res.json(result);
+  }
+  async updatePet(req: any, res: any) {
+    const { _id, petId, petsObj } = req.body;
+    const currentUser = await User1.findOne({ _id });
+    for (let i = 0; i < currentUser.pets.length; i++) {
+      if (currentUser.pets[i].petId == petId) {
+        currentUser.pets[i] = petsObj
+      }
+    }
+    await currentUser.save();
+    return res.json(currentUser.pets);
+  }
 }
 
 module.exports = new authController();

@@ -21,6 +21,7 @@ const User = new Schema({
       age: { type: String },
       avatarPath: { type: String },
       about: { type: String },
+      gender: { type: String },
       other: {
         neutered: { type: String },
         canBeInHerd: { type: String },

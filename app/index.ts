@@ -32,6 +32,9 @@ app.get("/users/get-chat", controller1.getOwners);
 app.post("/order", controller1.getOrder);
 app.post("/send-message", controller1.pushMessage)
 app.post("/check-password", controller1.checkPassword)
+app.post("/remove-pet", controller1.removePet)
+app.post("/get-pet", controller1.getPetById)
+app.post("/update-pet", controller1.updatePet)
 
 // Устанавливаем сервер и соединение с базой данных
 
