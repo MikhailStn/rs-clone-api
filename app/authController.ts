@@ -345,6 +345,7 @@ class authController {
             return;
           } else {
             user2.petsitterData.availableDates.push(availableDates[i]);
+            user2.petsitterData.availableDates.flat(Infinity)
           }
         }
       }
