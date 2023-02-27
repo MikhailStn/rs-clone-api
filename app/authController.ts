@@ -340,14 +340,7 @@ class authController {
         user2.orders.push(order);
       }
       if (availableDates) {
-        for (let i = 0; i < availableDates.length; i++) {
-          if (user2.petsitterData.availableDates.includes(availableDates[i])) {
-            let index = user2.petsitterData.availableDates.indexOf(availableDates[i]);
-            user2.petsitterData.availableDates.splice(index, 1)
-          } else {
-            user2.petsitterData.availableDates.push(availableDates[i]);
-          }
-        }
+        user2.petsitterData.availableDates = availableDates;
       }
       if (prices) {
         user2.petsitterData.prices = prices;
