@@ -342,10 +342,9 @@ class authController {
       if (availableDates) {
         for (let i = 0; i < availableDates.length; i++) {
           if (user2.petsitterData.availableDates.includes(availableDates[i])) {
-            return;
+            console.log("This date already exist");
           } else {
             user2.petsitterData.availableDates.push(availableDates[i]);
-            user2.petsitterData.availableDates.flat(Infinity)
           }
         }
       }
