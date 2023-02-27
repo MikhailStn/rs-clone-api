@@ -18,14 +18,14 @@ class authController {
       if (!errors.isEmpty()) {
         return res
           .status(400)
-          .json({ message: "Ошибка при регистрации", errors });
+          .json({ message: "Registration error", errors });
       }
       const { firstName, lastName, city, email, password, phone } = req.body;
       const candidateEmail = await User1.findOne({ email });
       if (candidateEmail) {
         return res
           .status(400)
-          .json({ message: "Пользователь с таким email уже существует" });
+          .json({ message: "This email is already used" });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const user = new User1({
@@ -43,7 +43,7 @@ class authController {
       });
       await user.save();
       return res.json({
-        message: "Пользователь зарегистрирован",
+        message: "Successful registration",
         id: user._id,
         role: user.role,
       });
@@ -59,11 +59,11 @@ class authController {
       if (!user2) {
         return res
           .status(400)
-          .json({ message: `Пользователь c таким адресом почты не найден` });
+          .json({ message: `No user with such email found` });
       }
       const validPassword = bcrypt.compareSync(password, user2.password);
       if (!validPassword) {
-        return res.status(400).json({ message: "Введен неверный пароль" });
+        return res.status(400).json({ message: "Incorrect password" });
       }
       const token = generateAccesToken(user2._id);
       return res.json({ token, id: user2._id, role: user2.role });
@@ -88,7 +88,7 @@ class authController {
       if (!currentUser) {
         return res
           .status(400)
-          .json({ message: `Пользователь c таким id не найден` });
+          .json({ message: `User with such ID was not found` });
       }
       return res.json(currentUser);
     } catch (err) {
@@ -102,14 +102,14 @@ class authController {
       if (!errors.isEmpty()) {
         return res
           .status(400)
-          .json({ message: "Ошибка при регистрации", errors });
+          .json({ message: "Registration error", errors });
       }
       const { firstName, lastName, city, email, password, phone } = req.body;
       const candidateEmail = await User1.findOne({ email });
       if (candidateEmail) {
         return res
           .status(400)
-          .json({ message: "Пользователь с таким email уже существует" });
+          .json({ message: "This email is already used" });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const user = new User1({
@@ -126,7 +126,7 @@ class authController {
       });
       await user.save();
       return res.json({
-        message: "Пользователь зарегистрирован",
+        message: "Successful registration",
         id: user._id,
         role: user.role,
       });
@@ -142,7 +142,7 @@ class authController {
       if (!currentUser) {
         return res
           .status(400)
-          .json({ message: `Пользователь c таким id не найден` });
+          .json({ message: `User with such ID was not found` });
       }
       return res.json(currentUser.role);
     } catch (err) {
