@@ -282,13 +282,13 @@ class authController {
       }
       if (serviceArea_walking) {
         user2.petsitterData.services.walking.serviceArea = serviceArea_walking;
-      } else {
+      } else if (serviceArea_walking == '') {
         user2.petsitterData.services.walking.serviceArea = "all";
       }
       if (serviceArea_homevisits) {
         user2.petsitterData.services.homevisits.serviceArea =
           serviceArea_homevisits;
-      } else {
+      } else if (serviceArea_homevisits == '') {
         user2.petsitterData.services.homevisits.serviceArea = "all";
       }
       if (kindOfDogs) {
@@ -341,6 +341,7 @@ class authController {
       }
       if (availableDates) {
         user2.petsitterData.availableDates = availableDates;
+        
       }
       if (prices) {
         user2.petsitterData.prices = prices;
