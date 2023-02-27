@@ -342,7 +342,8 @@ class authController {
       if (availableDates) {
         for (let i = 0; i < availableDates.length; i++) {
           if (user2.petsitterData.availableDates.includes(availableDates[i])) {
-            console.log("This date already exist");
+            let index = user2.petsitterData.availableDates.indexOf(availableDates[i]);
+            user2.petsitterData.availableDates.splice(index, 1)
           } else {
             user2.petsitterData.availableDates.push(availableDates[i]);
           }
