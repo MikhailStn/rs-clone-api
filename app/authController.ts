@@ -16,16 +16,12 @@ class authController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ message: "Registration error", errors });
+        return res.status(400).json({ message: "Registration error", errors });
       }
       const { firstName, lastName, city, email, password, phone } = req.body;
       const candidateEmail = await User1.findOne({ email });
       if (candidateEmail) {
-        return res
-          .status(400)
-          .json({ message: "This email is already used" });
+        return res.status(400).json({ message: "This email is already used" });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const user = new User1({
@@ -38,8 +34,8 @@ class authController {
         role: "OWNER",
         pets: [],
         orders: [],
-        birth: '',
-        gender: ''
+        birth: "",
+        gender: "",
       });
       await user.save();
       return res.json({
@@ -100,16 +96,12 @@ class authController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res
-          .status(400)
-          .json({ message: "Registration error", errors });
+        return res.status(400).json({ message: "Registration error", errors });
       }
       const { firstName, lastName, city, email, password, phone } = req.body;
       const candidateEmail = await User1.findOne({ email });
       if (candidateEmail) {
-        return res
-          .status(400)
-          .json({ message: "This email is already used" });
+        return res.status(400).json({ message: "This email is already used" });
       }
       const hashPassword = bcrypt.hashSync(password, 7);
       const user = new User1({
@@ -121,8 +113,8 @@ class authController {
         phone,
         role: "PETSITTER",
         orders: [],
-        birth: '',
-        gender: ''
+        birth: "",
+        gender: "",
       });
       await user.save();
       return res.json({
@@ -212,11 +204,11 @@ class authController {
         password,
         phone,
         review,
-        name
+        name,
       } = req.body;
       const user2 = await User1.findOne({ _id });
       if (review) {
-        user2.petsitterData.reviews.push(review)
+        user2.petsitterData.reviews.push(review);
       }
       if (name) {
         user2.firstName = name[0];
@@ -282,13 +274,13 @@ class authController {
       }
       if (serviceArea_walking) {
         user2.petsitterData.services.walking.serviceArea = serviceArea_walking;
-      } else if (serviceArea_walking == '') {
+      } else if (serviceArea_walking == "") {
         user2.petsitterData.services.walking.serviceArea = "all";
       }
       if (serviceArea_homevisits) {
         user2.petsitterData.services.homevisits.serviceArea =
           serviceArea_homevisits;
-      } else if (serviceArea_homevisits == '') {
+      } else if (serviceArea_homevisits == "") {
         user2.petsitterData.services.homevisits.serviceArea = "all";
       }
       if (kindOfDogs) {
@@ -303,7 +295,7 @@ class authController {
       if (address) {
         user2.address = address;
       }
-      if (avatarPath || avatarPath == '') {
+      if (avatarPath || avatarPath == "") {
         user2.avatarPath = avatarPath;
       }
       if (aboutMe) {
@@ -341,7 +333,6 @@ class authController {
       }
       if (availableDates) {
         user2.petsitterData.availableDates = availableDates;
-        
       }
       if (prices) {
         user2.petsitterData.prices = prices;
@@ -443,7 +434,10 @@ class authController {
   async checkPassword(req: any, res: any) {
     const { _id, currPassword } = req.body;
     const currentUser = await User1.findOne({ _id });
-    const validPassword = bcrypt.compareSync(currPassword, currentUser.password)
+    const validPassword = bcrypt.compareSync(
+      currPassword,
+      currentUser.password
+    );
     if (validPassword) {
       return res.json({ message: "Success" });
     } else {
@@ -455,7 +449,7 @@ class authController {
     const currentUser = await User1.findOne({ _id });
     for (let i = 0; i < currentUser.pets.length; i++) {
       if (currentUser.pets[i].petId == petId) {
-        currentUser.pets.splice(i, 1)
+        currentUser.pets.splice(i, 1);
       }
     }
     await currentUser.save();
@@ -464,10 +458,10 @@ class authController {
   async getPetById(req: any, res: any) {
     const { _id, petId } = req.body;
     const currentUser = await User1.findOne({ _id });
-    let result = ''
+    let result = "";
     for (let i = 0; i < currentUser.pets.length; i++) {
       if (currentUser.pets[i].petId == petId) {
-        result = currentUser.pets[i]
+        result = currentUser.pets[i];
       }
     }
     return res.json(result);
@@ -477,11 +471,34 @@ class authController {
     const currentUser = await User1.findOne({ _id });
     for (let i = 0; i < currentUser.pets.length; i++) {
       if (currentUser.pets[i].petId == petId) {
-        currentUser.pets[i] = petsObj
+        currentUser.pets[i] = petsObj;
       }
     }
     await currentUser.save();
     return res.json(currentUser.pets);
+  }
+  async deleteAccount(req: any, res: any) {
+    const { _id, password } = req.body;
+    const currentUser = await User1.findOne({ _id });
+    const validPassword = bcrypt.compareSync(password, currentUser.password);
+    const users = await User1.find();
+    let result = ''
+    if (validPassword) {
+      for (let i = 0; i < users.length; i++) {
+        if (users[i]._id == _id) {
+          currentUser.email = `Deleted user-${_id}`;
+          currentUser.password = 'Deleted user'
+          currentUser.role = 'OWNER'
+          currentUser.firstName = 'Deleted'
+          currentUser.lastName = 'User'
+        }
+      }
+      await currentUser.save();
+      result = res.status(200).json({ message: "Correct password" });
+    } else {
+      result = res.json({ message: "Incorrect password" });
+    }
+    return result
   }
 }
 

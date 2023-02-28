@@ -35,6 +35,7 @@ app.post("/check-password", controller1.checkPassword)
 app.post("/remove-pet", controller1.removePet)
 app.post("/get-pet", controller1.getPetById)
 app.post("/update-pet", controller1.updatePet)
+app.post("/delete-user", controller1.deleteAccount)
 
 // Устанавливаем сервер и соединение с базой данных
 
